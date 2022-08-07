@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
  declarations: [AppComponent],
  imports: [
    BrowserModule,
+
    RouterModule.forRoot([{
      path: '',
      loadChildren: () => import('./remote-entry/entry.module').then(m => m.RemoteEntryModule)
