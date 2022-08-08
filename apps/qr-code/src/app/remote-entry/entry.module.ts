@@ -4,9 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { RemoteEntryComponent } from './entry.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
 
 @NgModule({
-  declarations: [RemoteEntryComponent, NxWelcomeComponent],
+  declarations: [
+    RemoteEntryComponent,
+    NxWelcomeComponent,
+    GenerateQrCodeComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([
