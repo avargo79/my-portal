@@ -1,0 +1,113 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/qr-code/src",
+  "prefix": "my-portal",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/qr-code",
+        "index": "apps/qr-code/src/index.html",
+        "main": "apps/qr-code/src/main.ts",
+        "polyfills": "apps/qr-code/src/polyfills.ts",
+        "tsConfig": "apps/qr-code/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/qr-code/src/favicon.ico", "apps/qr-code/src/assets"],
+        "styles": ["apps/qr-code/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/qr-code/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/qr-code/src/environments/environment.ts",
+              "with": "apps/qr-code/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/qr-code/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "qr-code:build:production"
+        },
+        "development": {
+          "browserTarget": "qr-code:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "qr-code:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/qr-code/**/*.ts", "apps/qr-code/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/qr-code"],
+      "options": {
+        "jestConfig": "apps/qr-code/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "qr-code:build",
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "qr-code:build:development"
+        },
+        "production": {
+          "buildTarget": "qr-code:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

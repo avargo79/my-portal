@@ -19,10 +19,17 @@ import { loadRemoteModule } from '@nrwl/angular/mf';
         {
           path: 'login',
           loadChildren: () =>
-              loadRemoteModule('login', './Module').then(
-                  (m) => m.RemoteEntryModule
-               ),
-      }
+            loadRemoteModule('login', './Module').then(
+              (m) => m.RemoteEntryModule
+            ),
+        },
+        {
+          path: 'qr-code',
+          loadChildren: () =>
+            loadRemoteModule('qr-code', './Module').then(
+              (m) => m.RemoteEntryModule
+            ),
+        },
       ],
       { initialNavigation: 'enabledBlocking' }
     ),
